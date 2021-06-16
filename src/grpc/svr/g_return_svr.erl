@@ -16,8 +16,8 @@
 
 -callback get_money(ctx:ctx(), ct_return_pb:account_plat()) ->
     {ok, ct_return_pb:charge(), ctx:ctx()} | grpcbox_stream:grpc_error_response().
-get_money(CTX, #{account := Account, platform := Platform}) ->
-    Money1 = case return_charge:get_account_money({Account, Platform}) of
+get_money(CTX, #{account := Account}) ->
+    Money1 = case return_charge:get_account_money(Account) of
                  Money when Money > 0 ->
                      Money;
                  _ ->
